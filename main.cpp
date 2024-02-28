@@ -7,13 +7,22 @@
 //Write an application that will read in a number of integers from a file and store them in
 //a vector. Allow the user to search through the vector and find the position of any user defined number.
 
-//print elements of vector<int>
+//print elements of vector<int> and vector<string>
 void printVector(std::vector<int> &intVect) {
     std::cout << "Printing all of vector: " << std::endl;
 
     std::vector<int>::size_type sizeVectInt = intVect.size();
 
     for (std::vector<int>::iterator i = intVect.begin(); i != intVect.end(); i++) {
+        std::cout << *i << std::endl;
+    }
+}
+void printVector(std::vector<std::string> &stringVect) {
+    std::cout << "Printing all of vector: " << std::endl;
+
+    std::vector<std::string>::size_type sizeVectString = stringVect.size();
+
+    for (std::vector<std::string>::iterator i = stringVect.begin(); i != stringVect.end(); i++) {
         std::cout << *i << std::endl;
     }
 }
@@ -43,6 +52,10 @@ void readIntFromFile(std::list<int> &vector, std::ifstream &inputIntFile) {
 }
 
 int q01() {
+
+    std::cout << "--- Q01 ---" << std::endl;
+
+
     //make vector
     std::vector<int> ints;
 
@@ -80,6 +93,10 @@ int q01() {
 }
 
 int q02() {
+
+    std::cout << "--- Q02 ---" << std::endl;
+
+
     //make list
     std::list<int> ints;
 
@@ -114,10 +131,14 @@ int q02() {
     }
 
 
-    return 1;
+    return 2;
 }
 
 int q03() {
+
+    std::cout << "--- Q03 ---" << std::endl;
+
+
     //make vector
     std::vector<int> ints;
 
@@ -158,7 +179,51 @@ int q03() {
     std::cout << "Showing they're naturally ordered and ascending:" << std::endl;
     printVector(ints);
 
-    return 1;
+    return 3;
+}
+
+int q04() {
+
+    std::cout << "--- Q04 ---" << std::endl;
+
+    //make vector and populate
+    std::vector<std::string> strings;
+    strings.push_back("One");
+    strings.push_back("Two");
+    strings.push_back("Three");
+    strings.push_back("Four");
+    strings.push_back("Five");
+
+    //sort using anonymous class comparator
+    //ascending, s1 is smaller than s2 == true
+    std::sort(strings.begin(), strings.end(), [](std::string s1, std::string s2){return s1.length() < s2.length();});
+
+    //print out
+    printVector(strings);
+
+    return 4;
+}
+
+int q05() {
+
+    std::cout << "--- Q05 ---" << std::endl;
+
+    //make vector and populate
+    std::vector<std::string> strings;
+    strings.push_back("One");
+    strings.push_back("Two");
+    strings.push_back("Three");
+    strings.push_back("Four");
+    strings.push_back("Five");
+
+    //sort using anonymous class comparator
+    //s1 is bigger than s2
+    std::sort(strings.begin(), strings.end(), [](std::string s1, std::string s2){return s1.length() > s2.length();});
+
+    //print out
+    printVector(strings);
+
+    return 5;
 }
 
 int main() {
@@ -169,6 +234,10 @@ int main() {
     q02();
 
     q03();
+
+    q04();
+
+    q05();
 
     return 0;
 }
